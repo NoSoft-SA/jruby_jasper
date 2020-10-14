@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="ERROR">
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Logger name="net.sf.jasperreports" level="error">
+      <AppenderRef ref="Console"/>
+      <Additivity>false</Additivity>
+    </Logger>
+    <!-- To log the executed query, set this level to debug -->
+    <Logger name="net.sf.jasperreports.engine.query.JRJdbcQueryExecuter" level="error">
+      <AppenderRef ref="Console"/>
+      <Additivity>false</Additivity>
+    </Logger>
+    <Logger name="net.sf.jasperreports.engine.JasperFillManager" level="error">
+      <AppenderRef ref="Console"/>
+      <Additivity>false</Additivity>
+    </Logger>
+    <Logger name="net.sf.jasperreports.engine.export.JRXlsxExporter" level="error">
+      <AppenderRef ref="Console"/>
+      <Additivity>false</Additivity>
+    </Logger>
+    <!-- To log the report name, set this level to info -->
+    <!-- To log the report parameters, set this level to debug -->
+    <Logger name="JasperRuby" level="info">
+      <AppenderRef ref="Console"/>
+      <Additivity>false</Additivity>
+    </Logger>
+    <Root level="error">
+      <AppenderRef ref="Console"/>
+    </Root>
+  </Loggers>
+</Configuration>

@@ -1,0 +1,64 @@
+AllCops:
+  Exclude:
+    - db/**/*
+    - test/**/*
+    - tmp/**/*
+
+# New (pending) cops:
+Lint/RaiseException:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+Style/ExponentialNotation:
+  Enabled: true
+# The following cops were added to RuboCop, but are not configured.
+# Please set Enabled to either `true` or `false` in your `.rubocop.yml` file: -
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+# (0.83) -
+Style/SlicingWithRange:
+  Enabled: true
+# (0.83) For more information: https://docs.rubocop.org/en/latest/versioning/
+
+# END of pending cops
+
+Style/Documentation:
+  Enabled: false
+
+Layout/LineLength:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Layout/ExtraSpacing:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+    - '**/test_*.rb'
+
+Metrics/ClassLength:
+  Exclude:
+    - '**/test_*.rb'
+
+Metrics/AbcSize:
+  Exclude:
+    - '**/test_*.rb'
+
+Layout/SpaceAroundOperators:
+  AllowForAlignment: true
