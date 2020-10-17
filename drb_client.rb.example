@@ -1,0 +1,41 @@
+# frozen_string_literal: true
+
+require 'drb/drb'
+
+SERVER_URI = 'druby://localhost:9998'
+DRb.start_service
+
+DB_OPTS = {
+  user: 'postgres',
+  password: 'postgres',
+  port: nil,
+  host: 'localhost',
+  database: 'dbname',
+}.freeze
+ 
+service = DRbObject.new_with_uri(SERVER_URI)
+
+puts "---------------------------------"
+puts "Running JrubyJasper version #{service.version}"
+puts "---------------------------------\n"
+
+REPORTS = [
+  { name: 'report_name', dir: 'dir/above/report_name', mode: :pdf, params: { 'a_param' => 1 }, outfile: 'rpt.pdf' },
+  { name: 'report_name', dir: 'dir/above/report_name', mode: :xls, params: { 'a_param' => 1 }, outfile: 'rpt.xlsx' },
+  { name: 'report_name', dir: 'dir/above/report_name', mode: :csv, params: { 'a_param' => 1 }, outfile: 'rpt.csv' },
+  { name: 'report_name', dir: 'dir/above/report_name', mode: :rtf, params: { 'a_param' => 1 }, outfile: 'rpt.rtf' },
+  { name: 'report_name', dir: 'dir/above/report_name', mode: :print, params: { 'a_param' => 1, _printer_name: 'PRINTER-01' } }
+]
+
+REPORTS.each do |rpt|
+  res = service.make_jasper_report('username',
+                                   rpt[:name],
+                                   rpt[:dir],
+                                   rpt[:mode],
+                                   DB_OPTS,
+                                   rpt[:params])
+  puts res[:msg]
+  unless rpt[:mode] == :print
+    File.open(File.expand_path("./#{rpt[:outfile]}", __dir__), 'w') { |f| f << res[:doc] }
+  end
+end

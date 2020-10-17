@@ -45,6 +45,10 @@ class Service
     LOGGER.error e.backtrace.join("\n")
     { success: false, msg: e.message, error_type: e.class.name, backtrace: e.backtrace }
   end
+
+  def version
+    File.read(File.join(ROOT_PATH, 'VERSION'))
+  end
 end
 
 DRb.start_service "druby://#{ENV['JASPER_REPORTS_HOST_PORT']}", Service.new

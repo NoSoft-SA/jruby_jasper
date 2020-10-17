@@ -16,6 +16,7 @@ Warbler::Config.new do |config|
 
   # Additional files/directories to include, above those in config.dirs
   # config.includes = FileList['drb_service.rb']
+  config.includes = FileList['VERSION']
 
   # Additional files/directories to exclude
   # config.excludes = FileList["lib/tasks/*"]
