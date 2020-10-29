@@ -1,0 +1,14 @@
+[Unit]
+Description=Jruby Jasper interface
+Requires=network.target
+
+[Service]
+Type=simple
+User=$USER
+Group=$USER
+WorkingDirectory=$PWD
+Restart=on-failure
+ExecStart=$PWD/start.sh
+
+[Install]
+WantedBy=multi-user.target

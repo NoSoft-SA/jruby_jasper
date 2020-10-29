@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-puts ''
-puts '--------------------------------------------------------------------------------------'
-puts '--- NB. Must run with Java 8. Later versions incompatible with current Jasper jars ---'
-puts '--------------------------------------------------------------------------------------'
-puts "        (Running with java #{java.lang.System.get_property('java.version')})"
-puts ''
-
+# puts ''
+# puts '--------------------------------------------------------------------------------------'
+# puts '--- NB. Must run with Java 8. Later versions incompatible with current Jasper jars ---'
+# puts '--------------------------------------------------------------------------------------'
+# puts "        (Running with java #{java.lang.System.get_property('java.version')})"
+# puts ''
+#
 require 'drb/drb'
 require 'dotenv'
 require 'pathname'
@@ -55,6 +55,7 @@ DRb.start_service "druby://#{ENV['JASPER_REPORTS_HOST_PORT']}", Service.new
 
 puts "Listening on #{ENV['JASPER_REPORTS_HOST_PORT']}"
 LOGGER.info("Listening on #{ENV['JASPER_REPORTS_HOST_PORT']}")
+# puts "Running with java #{java.lang.System.get_property('java.version')}"
 
 # Wait for the drb server thread to finish before exiting.
 DRb.thread.join

@@ -34,7 +34,7 @@ File.open('./report_name.pdf', 'w') { |f| f << res[:doc] } if res[:success]
 
 ## Requirements
 
-- Java. Currently restricted to version 8.
+- Java. Versions higher than 8 will display a warning related to Groovy. Can be ignored.
 - Postgresql.
 
 ## Generate jar file
@@ -43,3 +43,6 @@ For development, JRuby 9.2.13 is required.
 
 Run `bundle exec warble` to generate the jar file.
 
+## Install
+
+See INSTALL.md
