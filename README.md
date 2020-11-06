@@ -43,6 +43,10 @@ For development, JRuby 9.2.13 is required.
 
 Run `bundle exec warble` to generate the jar file.
 
+## Generate a distribution zipfile
+
+Run `./build_dist.sh`. This will generate the jar file and build `jruby_jasper.zip` in the `dist` dir.
+
 ## Install
 
 See INSTALL.md
