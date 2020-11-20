@@ -46,8 +46,16 @@ class Service
     { success: false, msg: e.message, error_type: e.class.name, backtrace: e.backtrace }
   end
 
+  # Return the version number of this project.
   def version
-    File.read(File.join(ROOT_PATH, 'VERSION'))
+    "#{File.read(File.join(ROOT_PATH, 'VERSION')).chomp} - Jasper jar: #{jasper_version}"
+  end
+
+  # Find the jasperreports jar filename and return its version number.
+  def jasper_version
+    dir = File.join(JAR_BASE, 'lib/jasperreports')
+    file = Dir.entries(dir).grep(/jasperreports-\d/).first
+    file.delete_suffix('.jar').split('-').last
   end
 end
 
