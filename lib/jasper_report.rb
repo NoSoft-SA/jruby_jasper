@@ -83,6 +83,7 @@ class JasperReport # rubocop:disable Metrics/ClassLength
     send(meth, fill)
   ensure
     Dir.chdir @was_at
+    @conn.close if @conn
   end
 
   private
