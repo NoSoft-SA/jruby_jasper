@@ -203,7 +203,7 @@ class JasperReport # rubocop:disable Metrics/ClassLength
 
     # perhaps... read the report def and find the required parameter types & build like that?
     params = Java::JavaUtil::HashMap.new
-    params['SUBREPORT_DIR'] = @path
+    params['SUBREPORT_DIR'] = "#{@path.chomp('/')}/"
     @report_params.each do |k, v|
       params[k] = v
     end
