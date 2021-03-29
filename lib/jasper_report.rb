@@ -213,10 +213,15 @@ class JasperReport # rubocop:disable Metrics/ClassLength
   # Parameters for Jasper must have String keys.
   # Also JRuby can convert integer literals to Longs which might not match the
   # report definition.
+  # Time is also fiddly...
   def prepare_parameters(params)
     @report_params = (params || {}).transform_keys(&:to_s).transform_values do |val|
       if val.is_a?(Integer)
         java.lang.Integer.new(val) # Avoid running into Long vs Int problem
+      elsif val.is_a?(Time)
+        java.sql.Timestamp.new(val.to_java.time)
+      elsif val.is_a?(DateTime)
+        java.sql.Timestamp.new(val.to_java.time)
       else
         val
       end
